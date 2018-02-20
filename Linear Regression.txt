@@ -21,7 +21,6 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 import org.apache.hadoop.util.*;
 
-//import regression.Driver;
 
 public class LinearRegression {
 
@@ -107,7 +106,7 @@ public class LinearRegression {
 				BufferedReader d = new BufferedReader(new InputStreamReader(bis));
 				String line = d.readLine();
 				
-				//all right we have all the theta values, lets convert them to floats
+				//the theta values are  converted  to floats
 				String[] theta = line.split(",");
 				
 				//first value is the y value
@@ -159,7 +158,6 @@ public class LinearRegression {
 			
 			/**
 			 * The reducer just has to sum all the values for a given key
-			 * 
 			 */
 			
 			float sum = 0;
@@ -180,11 +178,7 @@ public class LinearRegression {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		//the class is LinearRegression
 		JobConf conf = new JobConf(LinearRegression.class);
-		
-		//the jobname is linearregression (this can be anything)
 		conf.setJobName("linearregression");
 		//conf.set("fs.file.impl", "regression.WinLocalFileSystem");
 		conf.setJarByClass(LinearRegression.class);
@@ -193,10 +187,8 @@ public class LinearRegression {
 		* Try to load the theta values into the distributed cache
 		*/
 		try {
-		  //make sure this is your path to the cache file in the hadoop file system
 			DistributedCache.addCacheFile(
 			  new URI("/th/theta.csv"), conf);
-					//new URI("G://X"),conf);
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		}
